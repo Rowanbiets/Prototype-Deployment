@@ -13,6 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}  # Gebruik de package.json als sleutel
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -25,7 +33,7 @@ jobs:
       run: npm test
 
   deploy:
-    needs: test # Wacht tot het testjob succesvol is
+    needs: test  # Wacht tot het testjob succesvol is
     runs-on: ubuntu-latest
 
     steps:
