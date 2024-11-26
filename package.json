@@ -1,0 +1,14 @@
+{
+    "name": "prototype-deployment",
+    "version": "1.0.0",
+    "description": "Een voorbeeldproject",
+    "main": "index.js",
+    "scripts": {
+  "test": "echo \"No tests defined, skipping.\""
+}
+,
+    "author": "Jouw Naam",
+    "license": "ISC",
+    "dependencies": {}
+  }
+  
