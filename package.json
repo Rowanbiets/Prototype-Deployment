@@ -4,11 +4,11 @@
     "description": "Een voorbeeldproject",
     "main": "index.js",
     "scripts": {
-  "test": "jest"
-}
-,
+        "test": "jest"
+    },
     "author": "Rowan Biets",
     "license": "ISC",
-    "dependencies": {}
-  }
-  
+    "devDependencies": {
+        "jest": "^29.7.0"
+    }
+}
