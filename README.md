@@ -1,7 +1,5 @@
 # **My Custom GitHub Action**
 
-[![Actions Status](https://github.com/your-username/your-repo/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-username/your-repo/actions)
-
 ## **Beschrijving**
 Deze repository bevat een GitHub Action die automatisch een specifieke taak uitvoert, zoals het groeten van een gebruiker of een andere procesautomatisering. Het project is opgezet om eenvoudig te integreren in CI/CD-workflows.
 
