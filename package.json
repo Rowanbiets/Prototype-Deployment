@@ -4,10 +4,10 @@
     "description": "Een voorbeeldproject",
     "main": "index.js",
     "scripts": {
-  "test": "echo \"No tests defined, skipping.\""
+  "test": "jest"
 }
 ,
-    "author": "Jouw Naam",
+    "author": "Rowan Biets",
     "license": "ISC",
     "dependencies": {}
   }

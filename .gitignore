@@ -1,0 +1,40 @@
+# Dependency directories
+node_modules/
+
+# Build output directories
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (voor gevoelige informatie zoals API-sleutels)
+.env
+.env.local
+.env.*.local
+
+# Editor-specifieke bestanden
+.vscode/
+.idea/
+
+# System bestanden
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+
+# Deployment artifacts (als je een lokale map gebruikt voor deployment)
+gh-pages/
+
+# Coverage rapporten (voor test coverage tools zoals Jest)
+coverage/
+
+# ESLint cache
+.eslintcache
+
+# TypeScript output (indien van toepassing)
+*.tsbuildinfo
