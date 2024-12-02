@@ -1,17 +1,17 @@
-# **My Custom GitHub Action**
+# **Flask Web Application with CI/CD Pipeline**
 
 ## **Beschrijving**
-Deze repository bevat een GitHub Action die automatisch een specifieke taak uitvoert, zoals het groeten van een gebruiker of een andere procesautomatisering. Het project is opgezet om eenvoudig te integreren in CI/CD-workflows.
+
+Dit project bevat een Flask-webtoepassing die wordt gebruikt voor het groeten van een gebruiker en het uitvoeren van eenvoudige rekenkundige bewerkingen, zoals optellen. Het is geïntegreerd met een CI/CD-pijplijn via GitHub Actions om automatisch tests uit te voeren en de applicatie te implementeren wanneer er wijzigingen in de `main` branch worden gepusht. Deze oplossing bevat ook een custom GitHub Action om specifieke taken zoals het uitvoeren van tests te automatiseren.
 
 ---
 
 ## **Inhoud**
 - [Beschrijving](#beschrijving)
-- [Inhoud](#inhoud)
 - [Kenmerken](#kenmerken)
 - [Installatie](#installatie)
 - [Gebruik](#gebruik)
-- [Workflowvoorbeeld](#workflowvoorbeeld)
+- [CI/CD Pipeline](#cicd-pipeline)
 - [Ontwikkeling](#ontwikkeling)
 - [Contributie](#contributie)
 - [Licentie](#licentie)
@@ -19,36 +19,24 @@ Deze repository bevat een GitHub Action die automatisch een specifieke taak uitv
 ---
 
 ## **Kenmerken**
-- Automatische uitvoering binnen GitHub Actions.
-- Eenvoudige invoerparameters om je proces aan te passen.
-- Ondersteunt versiebeheer en automatische updates.
+- **Flask Webapplicatie**: Een eenvoudige webapp die een gezondheidsoverzicht en optelling van twee getallen biedt via een REST API.
+- **Automatische uitvoering van tests**: Geïntegreerd met een GitHub Actions CI/CD-pijplijn om tests automatisch uit te voeren bij elke push naar de `main` branch.
+- **Deployment naar GitHub Pages**: De applicatie kan automatisch worden gedeployed naar GitHub Pages of een andere server na succesvolle tests.
+- **Eenvoudige configuratie**: Het is eenvoudig aan te passen voor andere projecten die gebruik maken van Flask en GitHub Actions.
 
 ---
 
 ## **Installatie**
 
-Volg deze stappen om de actie te installeren en te gebruiken in je project:
+Volg deze stappen om de applicatie lokaal te draaien en om de CI/CD-pijplijn in te stellen.
 
-### 1. Voeg de actie toe aan je workflow
-In je `.github/workflows` map, maak een nieuwe workflow (bijvoorbeeld `ci-cd.yml`) en voeg de volgende configuratie toe:
+### 1. Clone de repository
+Clone het project naar je lokale machine:
 
-```yaml
-name: Test Action Workflow
+```bash
+git clone https://github.com/yourusername/Prototype-Deployment.git
+cd Prototype-Deployment
 
-on:
-  push:
-    branches:
-      - main
 
-jobs:
-  test-action:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Run Custom Action
-        uses: ./my-action
-        with:
-          name: Rowan
