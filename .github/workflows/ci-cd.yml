@@ -38,6 +38,11 @@ jobs:
         pytest
 
 
+    - name: Install Flask
+      run: |
+          . venv/bin/activate
+          pip install flask
+      
   deploy:
     needs: test 
     runs-on: ubuntu-latest
