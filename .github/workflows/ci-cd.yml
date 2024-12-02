@@ -8,7 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -27,22 +26,17 @@ jobs:
       - name: Run Flask tests
         run: |
           . venv/bin/activate
-          # Start de Flask server in de achtergrond
-          nohup flask run --port=5000 &
-          # Wacht even om ervoor te zorgen dat de server gestart is
-          sleep 5
-          # Voer de tests uit met pytest
-          pytest
+          python -m unittest test_app.py
 
   deploy:
-    needs: test  # Zorg dat de tests succesvol moeten zijn voor de deployment
+    needs: test  # Zorg ervoor dat de tests succesvol moeten zijn voor de deployment
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to GitHub Pages
+      - name: Build and Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
