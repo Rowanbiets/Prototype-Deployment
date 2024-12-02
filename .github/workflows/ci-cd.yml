@@ -21,25 +21,30 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
-        . venv/bin/activate
-        pip install -r requirements.txt 
-        pip install flask 
+        source venv/bin/activate
+        pip install -r requirements.txt  # Zorg ervoor dat Flask in requirements.txt staat
 
-    - name: Run tests
+    - name: Run tests with pytest
       run: |
-        . venv/bin/activate
-        venv/bin/pytest  
+        source venv/bin/activate
+        pytest tests/test_app.py  # Run pytest in de tests folder
 
   deploy:
-    needs: test # Zorg dat tests succesvol moeten zijn voor deployment
+    needs: test  
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Build application (optioneel, als nodig voor GitHub Pages)
+        run: |
+          # Voeg hier een build stap toe als dat nodig is, bijvoorbeeld:
+          # python setup.py install
+          # of een ander buildcommando voor je app
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./build 
