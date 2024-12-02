@@ -10,22 +10,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        . venv/bin/activate
+        pip install -r requirements.txt
 
-      - name: Run tests
-        run: npm test
+    - name: Start Flask server in background
+      run: |
+        nohup flask run --host=0.0.0.0 --port=5000 &
+
+    - name: Wait for server to start
+      run: |
+        sleep 5  # Wacht 5 seconden voor de server om op te starten
+
+    - name: Run tests
+      run: |
+        . venv/bin/activate
+        pytest
+
 
   deploy:
-    needs: test # Zorg dat tests succesvol moeten zijn voor deployment
+    needs: test 
     runs-on: ubuntu-latest
 
     steps:

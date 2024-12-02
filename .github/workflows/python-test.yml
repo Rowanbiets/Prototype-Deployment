@@ -1,35 +1,30 @@
-name: Python Tests
+name: Health Check & Logging Workflow
 
 on:
   push:
     branches:
-      - main  # Trigger de workflow bij elke push naar de main branch
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Gebruikt een Ubuntu-omgeving om de actie uit te voeren
+    runs-on: ubuntu-latest
 
     steps:
-    # Stap 1: Checkout de code van je repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-
-    # Stap 2: Zet de Python-versie op die je wilt gebruiken
-    - name: Setup Python
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Gebruik Python versie 3.9 of de versie die je wilt
+        python-version: '3.9'
 
-
-    # Stap 3: Installeer de afhankelijkheden vanuit requirements.txt
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip  # Upgrade pip naar de laatste versie
-        pip install -r requirements.txt  # Installeer de afhankelijkheden uit requirements.txt
-        
+      run: pip install flask pytest requests
 
-    # Stap 4: Draai de tests (bijvoorbeeld met pytest)
-    - name: Run tests
+    - name: Start Flask App
       run: |
-        pytest  # Draait de tests met pytest. Zorg ervoor dat pytest is geïnstalleerd in je requirements.txt
+        nohup python app.py &
+        sleep 5  # Wacht tot de server draait
+
+    - name: Run tests
+      run: pytest
