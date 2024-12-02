@@ -1,22 +1,26 @@
+import sys
+import os
 import pytest
-import requests
-import subprocess
-import time
 
-@pytest.fixture(scope="module", autouse=True)
-def flask_server():
-    # Start de Flask-server
-    server = subprocess.Popen(["flask", "run", "--port=5000"], env={"FLASK_APP": "app.py"})
-    time.sleep(3)  # Wacht tot de server actief is
-    yield
-    server.terminate()  # Stop de server na de tests
+# Voeg de root van je project toe aan sys.path zodat pytest de app kan vinden
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def test_health_check():
-    response = requests.get("http://127.0.0.1:5000/health")
+from app import create_app  # Gebruik create_app in plaats van rechtstreeks app importeren
+
+@pytest.fixture(scope="module")
+def client():
+    # Zorg ervoor dat de Flask-app wordt geïnitialiseerd
+    app = create_app()
+    app.config['TESTING'] = True
+    client = app.test_client()
+    yield client
+
+def test_health_check(client):
+    response = client.get('/health')
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
+    assert response.json == {"status": "healthy"}
 
-def test_add_route():
-    response = requests.get("http://127.0.0.1:5000/add/3/4")
+def test_add_route(client):
+    response = client.get('/add/3/4')
     assert response.status_code == 200
-    assert response.json() == {"result": 7}
+    assert response.json == {"result": 7}

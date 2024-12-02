@@ -28,3 +28,9 @@ jobs:
 
     - name: Run tests
       run: pytest
+      
+    - name: Set up Flask environment
+      run: |
+        export FLASK_APP=app.py
+        flask run --port=8000
+    

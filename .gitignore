@@ -38,3 +38,32 @@ coverage/
 
 # TypeScript output (indien van toepassing)
 *.tsbuildinfo
+
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+venv/
+env/
+*.env
+
+# IDE/Editor-specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Flask specific (if any)
+instance/
+.webassets-cache/
+
+# Other log and temporary files
+*.log
+*.bak
+*.swp
+*.swo
