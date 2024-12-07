@@ -137,3 +137,15 @@ Contributies aan dit project zijn welkom! Als je wilt bijdragen, volg dan de ond
 ### Licentie
 
 Dit project is gelicentieerd onder de MIT License - zie het LICENSE bestand voor details.
+
+
+### Bronnen
+
+- https://www.w3schools.com/python/module_requests.asp
+
+- https://flask.palletsprojects.com/en/stable/
+
+- https://docs.github.com/en/actions
+
+- https://docs.pytest.org/en/stable/
+
